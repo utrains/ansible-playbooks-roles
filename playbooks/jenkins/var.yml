@@ -1,0 +1,4 @@
+jenkins_host: database
+jenkins_remote_user: vagrant
+jenkins_become_user: root
+jenkins_key_url: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
