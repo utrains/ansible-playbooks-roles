@@ -1,0 +1,22 @@
+---
+- name: Create new users with passwords
+  hosts: "{{ hostservers }}"
+  become: true
+
+  vars_files:
+    - vars.yml
+    - users.yml
+
+  tasks:
+    - name: Create user accounts
+      user:
+        name: "{{ item.username }}"
+        password: "{{ item.password | password_hash('sha512', 65534) }}" # we are storing the password as a hash for security reasons because if an attacker gains access to our servers an the password is saved as aplain text, he can easily read it.
+        createhome: yes
+        shell: /bin/bash
+      with_items: "{{ users }}"
+
+#Here The command module is used to run the chage command, which sets the last password change date to the epoch (0) for each user, forcing them to change their password on first login.
+    - name: Force users to change password on first login
+      command: chage -d 0 {{ item.username }}
+      with_items: "{{ users }}"
