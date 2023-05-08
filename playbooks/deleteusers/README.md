@@ -10,7 +10,9 @@ This Ansible playbook deletes users from one or more CentOS servers. The playboo
 
 3. Run the playbook with the command:
 
-ansible-playbook main.yml -i hosts -l 
+```
+ansible-playbook main.yml -i hosts 
+```
 
 
 
