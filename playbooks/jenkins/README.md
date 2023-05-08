@@ -12,9 +12,9 @@ git clone https://github.com/utrains/ansible-playbooks-roles.git
 2. Edit the `vars.yml` file with your desired configuration.
 
 3. Run the playbook with the following command:
-
+```
 ansible-playbook  main.yml
-
+```
 
 
 ## Playbook Steps
