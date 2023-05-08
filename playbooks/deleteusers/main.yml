@@ -1,0 +1,14 @@
+---
+- name: Delete users from  servers
+  hosts: "{{ hostservers }}"
+  become: yes
+
+  vars_files:
+    - vars.yml
+    - users.yml
+  tasks:
+    - name: Delete users
+      user:
+        name: "{{ item.username }}"
+        state: absent
+      with_items: "{{ users_to_delete }}"
