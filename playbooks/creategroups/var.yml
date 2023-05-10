@@ -1,0 +1,10 @@
+---
+groups:
+  - name: group1
+    state: present
+    system: true
+  - name: group2
+    state: present
+    system: false
+  - name: group3
+    state: absent

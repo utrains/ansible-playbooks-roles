@@ -1,0 +1,6 @@
+---
+users:
+  - name: user1
+    groups: ['group1', 'group2']
+  - name: user2
+    groups: ['group2', 'group3']
