@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Your Name
+  description: Role to install Java
+  min_ansible_version: 2.11
+
+platforms:
+  - name: Debian
+    versions:
+      - all
+  - name: RedHat
+    versions:
+      - all
+  - name: Amazon
+    versions:
+      - 2

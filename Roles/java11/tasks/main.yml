@@ -1,0 +1,23 @@
+---
+- name: Update apt cache (for Ubuntu/Debian)
+  apt:
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Install Java (for Ubuntu/Debian)
+  apt:
+    name: "{{ java_package }}"
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Install Java (for CentOS/Red Hat)
+  yum:
+    name: "{{ java_package }}"
+    state: present
+  when: ansible_os_family == 'RedHat'
+
+- name: Install Java (for Amazon Linux 2)
+  yum:
+    name: "{{ java_package }}"
+    state: present
+  when: ansible_os_family == 'Amazon'
