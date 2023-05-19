@@ -1,0 +1,5 @@
+---
+- name: Playbook to install Java
+  hosts: your_target_hosts
+  roles:
+    - java11
