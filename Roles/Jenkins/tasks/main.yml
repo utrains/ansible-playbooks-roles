@@ -3,34 +3,43 @@
     get_url:
       url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
       dest: /etc/yum.repos.d/jenkins.repo
+    when: ansible_os_family == 'RedHat'
 
   - name: Import jenkins key from url
     ansible.builtin.rpm_key:
       state: present
       key: "{{ jenkins_key_url }}"
+    when: ansible_os_family == 'RedHat'
 
   - name: yum update
     yum:
       name: '*'
       state: latest
+    when: ansible_os_family == 'RedHat'
 
   - name: Install jenkins
     yum:
       name: jenkins
       state: latest
+    when: ansible_os_family == 'RedHat'
 
   - name: daemon-reload to pick up config changes
     ansible.builtin.systemd:
       daemon_reload: yes
+    when: ansible_os_family == 'RedHat'
 
   - name: Start jenkins
     ansible.builtin.systemd:
       name: jenkins
       state: started
+    when: ansible_os_family == 'RedHat'
   - name: Cat file contents
     ansible.builtin.shell:
       cmd: "cat /var/lib/jenkins/secrets/initialAdminPassword"
     register: innitialpass
+    when: ansible_os_family == 'RedHat'
+
   - name: Print Jenkins default password
     debug:
       msg: "Jenkins default password: {{ innitialpass.stdout }}"
+    when: ansible_os_family == 'RedHat'
